@@ -2,18 +2,15 @@
 NIXPACKS_NODE_VERSION = "20"
 
 [phases.install]
-# Forzamos la instalación de NPM eliminando el lockfile y limpiando la caché (Railway guarda node_modules entre builds)
 cmds = [
     "composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader",
-    "rm -rf node_modules package-lock.json",
-    "npm cache clean --force",
-    "npm install --force"
+    "npm ci",
+    "npm install @rolldown/binding-linux-x64-gnu --no-save"
 ]
 
 [phases.build]
 # Se ejecuta durante la construcción de la imagen en Railway
 cmds = [
-    "npm install @rolldown/binding-linux-x64-gnu --no-save",
     "npm run build",
     "mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache storage/logs bootstrap/cache /var/log/nginx",
     "chmod -R 777 storage bootstrap/cache /var/log/nginx"
