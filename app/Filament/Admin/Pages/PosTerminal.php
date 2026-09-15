@@ -216,6 +216,8 @@ class PosTerminal extends Page
     // SHIFT ACTIONS (Tarea 5)
     // =========================================================================
 
+    public bool $showForceCloseModal = false;
+
     public function openShift(): void
     {
         $userId = Auth::id() ?? 1;
@@ -243,8 +245,16 @@ class PosTerminal extends Page
             return;
         }
 
+        $shiftService = app(CashShiftService::class);
+        $existingRegisterShift = $shiftService->getActiveShiftForRegister((int) $this->selectedRegisterId);
+
+        if ($existingRegisterShift) {
+            $this->showShiftOpenModal = false;
+            $this->showForceCloseModal = true;
+            return;
+        }
+
         try {
-            $shiftService = app(CashShiftService::class);
             $shift = $shiftService->openShift(
                 cashRegisterId: (int) $this->selectedRegisterId,
                 userId: $userId,
@@ -257,6 +267,7 @@ class PosTerminal extends Page
             $this->activeShiftUserName = $shift->user->name ?? 'Cajero';
             $this->cachedActiveShift = $shift;
             $this->showShiftOpenModal = false;
+            $this->showForceCloseModal = false;
             $this->openingCashBs = '';
             $this->openingCashUsd = '';
 
@@ -278,6 +289,50 @@ class PosTerminal extends Page
                 ->danger()
                 ->send();
         }
+    }
+
+    public function confirmForceCloseAndOpen(): void
+    {
+        $userId = Auth::id() ?? 1;
+        $openingBs = (float) $this->openingCashBs;
+        $openingUsd = (float) $this->openingCashUsd;
+
+        try {
+            $shiftService = app(CashShiftService::class);
+            $shift = $shiftService->forceCloseAndOpenShift(
+                (int) $this->selectedRegisterId,
+                $userId,
+                $openingBs,
+                $openingUsd
+            );
+
+            $this->activeShiftId = $shift->id;
+            $this->activeShiftRegisterName = $shift->cashRegister->name ?? 'Caja 01 Mostrador';
+            $this->activeShiftUserName = $shift->user->name ?? 'Cajero';
+            $this->cachedActiveShift = $shift;
+            $this->showShiftOpenModal = false;
+            $this->showForceCloseModal = false;
+            $this->openingCashBs = '';
+            $this->openingCashUsd = '';
+
+            Notification::make()
+                ->title('Turno Abierto Exitosamente (Cierre Forzado)')
+                ->body("El turno viejo fue cerrado automáticamente y se inició el turno #{$shift->id}.")
+                ->success()
+                ->send();
+        } catch (Throwable $e) {
+            Notification::make()
+                ->title('Error inesperado')
+                ->body($e->getMessage())
+                ->danger()
+                ->send();
+        }
+    }
+
+    public function cancelForceClose(): void
+    {
+        $this->showForceCloseModal = false;
+        $this->showShiftOpenModal = true;
     }
 
     public function openCloseShiftModal(): void

@@ -59,6 +59,26 @@ class CashShiftService
     }
 
     /**
+     * Force close an existing open shift on a register and open a new one.
+     *
+     * @throws DomainException
+     */
+    public function forceCloseAndOpenShift(int $cashRegisterId, int $userId, float $openingBs, float $openingUsd): CashShift
+    {
+        $existingRegisterShift = $this->getActiveShiftForRegister($cashRegisterId);
+
+        if ($existingRegisterShift) {
+            // Force close it with system totals (0 difference)
+            $this->closeShift($existingRegisterShift, [
+                'notes' => 'Cierre forzado automático por apertura de nuevo turno.',
+            ]);
+        }
+
+        // Now open the new shift
+        return $this->openShift($cashRegisterId, $userId, $openingBs, $openingUsd);
+    }
+
+    /**
      * Close an active shift and perform blind arqueo audit.
      *
      * @param  array<string, mixed>  $declaredAmounts

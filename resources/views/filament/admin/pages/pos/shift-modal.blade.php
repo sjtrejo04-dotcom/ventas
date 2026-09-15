@@ -103,6 +103,42 @@
     </div>
 @endif
 
+<!-- ========================================== -->
+<!-- MODAL: FORZAR CIERRE DE TURNO ANTERIOR     -->
+<!-- ========================================== -->
+@if($showForceCloseModal)
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/85 backdrop-blur-md antialiased font-['Hanken_Grotesk']">
+        <div class="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-[#2A2A2A] rounded-3xl w-full max-w-md overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200 text-gray-900 dark:text-white">
+            <div class="p-6 bg-gray-50 dark:bg-[#141414] border-b border-gray-200 dark:border-[#2A2A2A] flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-[#FF5F1F]/15 flex items-center justify-center text-[#FF5F1F]">
+                    <x-heroicon-o-exclamation-triangle style="width: 1.5rem; height: 1.5rem;" />
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white font-['Manrope']">Caja Ocupada</h3>
+                    <p class="text-xs text-gray-500 dark:text-[#9E9E9E] mt-0.5">La caja seleccionada tiene un turno sin cerrar.</p>
+                </div>
+            </div>
+            <div class="p-6">
+                <p class="text-sm text-gray-600 dark:text-[#9E9E9E]">
+                    Existe un turno anterior que quedó abierto en esta caja. Para poder iniciar su turno ahora mismo, el sistema debe realizar un <strong>cierre forzado</strong> del turno anterior (con cero diferencias y usando los totales del sistema).
+                </p>
+                <p class="text-sm text-gray-600 dark:text-[#9E9E9E] font-bold mt-4">
+                    ¿Desea forzar el cierre del turno anterior y abrir su nuevo turno?
+                </p>
+            </div>
+            <div class="p-6 bg-gray-50 dark:bg-[#141414] border-t border-gray-200 dark:border-[#2A2A2A] flex items-center justify-end gap-3">
+                <button type="button" wire:click="cancelForceClose" class="px-5 py-2.5 rounded-2xl bg-gray-200 hover:bg-gray-300 dark:bg-[#222] dark:hover:bg-[#333] text-gray-700 dark:text-gray-300 text-sm font-semibold transition-colors cursor-pointer">
+                    Cancelar
+                </button>
+                <button type="button" wire:click="confirmForceCloseAndOpen" class="px-5 py-2.5 bg-[#FF5F1F] hover:bg-[#e65319] text-white text-sm font-bold rounded-2xl shadow-lg shadow-[#FF5F1F]/25 flex items-center gap-2 transform active:scale-95 transition-all cursor-pointer">
+                    <x-heroicon-o-shield-check style="width: 1.15rem; height: 1.15rem;" />
+                    Forzar Cierre y Abrir
+                </button>
+            </div>
+        </div>
+    </div>
+@endif
+
 <!-- ==================================================== -->
 <!-- MODAL: CIERRE DE TURNO Y ARQUEO CIEGO (Blind Audit) -->
 <!-- ==================================================== -->
