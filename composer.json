@@ -14,7 +14,9 @@
         "filament/filament": "*",
         "laravel/framework": "^13.17",
         "laravel/tinker": "^3.0",
-        "spatie/laravel-permission": "*"
+        "spatie/laravel-permission": "*",
+        "symfony/css-selector": "*",
+        "symfony/dom-crawler": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
