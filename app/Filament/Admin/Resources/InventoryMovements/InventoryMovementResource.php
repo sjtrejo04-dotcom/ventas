@@ -25,7 +25,7 @@ class InventoryMovementResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $navigationGroup = 'Inventario';
+    protected static string|UnitEnum|null $navigationGroup = 'Inventario';
 
     protected static ?string $recordTitleAttribute = 'concept';
 

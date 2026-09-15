@@ -23,7 +23,7 @@ class ProviderResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $navigationGroup = 'Directorio';
+    protected static string|UnitEnum|null $navigationGroup = 'Directorio';
 
     protected static ?string $recordTitleAttribute = 'name';
 
