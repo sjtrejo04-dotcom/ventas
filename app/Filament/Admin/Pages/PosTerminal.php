@@ -35,7 +35,7 @@ class PosTerminal extends Page
 
     protected static ?string $title = '';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Ventas';
+    protected static string|UnitEnum|null $navigationGroup = 'Operaciones';
 
     protected static ?int $navigationSort = 1;
 

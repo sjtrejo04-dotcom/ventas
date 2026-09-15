@@ -23,6 +23,8 @@ class ExchangeRateResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $recordTitleAttribute = 'currency';
 
     public static function getModelLabel(): string

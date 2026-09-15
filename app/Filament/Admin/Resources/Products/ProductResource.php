@@ -21,6 +21,8 @@ class ProductResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?string $navigationGroup = 'Inventario';
+
     protected static bool $shouldRegisterNavigation = true;
 
     protected static ?string $recordTitleAttribute = 'name';
@@ -71,3 +73,5 @@ class ProductResource extends Resource
         ];
     }
 }
+
+

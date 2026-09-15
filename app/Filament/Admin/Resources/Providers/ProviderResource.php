@@ -23,6 +23,8 @@ class ProviderResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?string $navigationGroup = 'Directorio';
+
     protected static ?string $recordTitleAttribute = 'name';
 
     public static function getModelLabel(): string
@@ -71,3 +73,5 @@ class ProviderResource extends Resource
         ];
     }
 }
+
+

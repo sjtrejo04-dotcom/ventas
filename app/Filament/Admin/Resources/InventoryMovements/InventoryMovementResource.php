@@ -25,6 +25,8 @@ class InventoryMovementResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?string $navigationGroup = 'Inventario';
+
     protected static ?string $recordTitleAttribute = 'concept';
 
     public static function getModelLabel(): string
@@ -79,3 +81,5 @@ class InventoryMovementResource extends Resource
         ];
     }
 }
+
+

@@ -22,6 +22,8 @@ class ExpenseResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-truck';
 
+    protected static ?string $navigationGroup = 'Operaciones';
+
     protected static bool $shouldRegisterNavigation = true;
 
     protected static ?string $recordTitleAttribute = 'invoice_number';
@@ -72,3 +74,5 @@ class ExpenseResource extends Resource
         ];
     }
 }
+
+
