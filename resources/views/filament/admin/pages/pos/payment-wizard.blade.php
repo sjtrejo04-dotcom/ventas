@@ -106,21 +106,7 @@
                                 </div>
                             </button>
 
-                            <!-- Cashea (0% IGTF) -->
-                            <button 
-                                type="button" 
-                                wire:click="setPaymentMethod('cashea')"
-                                class="p-3 rounded-2xl border text-left flex flex-col justify-between transition-all {{ $selectedPaymentMethod === 'cashea' ? 'bg-[#FF5F1F]/10 dark:bg-[#FF5F1F]/15 border-[#FF5F1F] text-gray-900 dark:text-white shadow-md' : 'bg-gray-50 dark:bg-[#141414] border-gray-200 dark:border-[#2A2A2A] text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-gray-600' }}"
-                            >
-                                <div class="flex items-center justify-between mb-2">
-                                    <span class="text-base font-bold text-amber-600 dark:text-yellow-400">⚡ Cashea</span>
-                                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-500/10 dark:bg-[#00FF94]/15 text-emerald-600 dark:text-[#00FF94] border border-emerald-500/20 dark:border-[#00FF94]/30">0% IGTF</span>
-                                </div>
-                                <div>
-                                    <p class="font-bold text-xs">Cashea</p>
-                                    <p class="text-[10px] text-gray-500 dark:text-[#9E9E9E]">Cuotas sin interés</p>
-                                </div>
-                            </button>
+
                         </div>
                     </div>
 
