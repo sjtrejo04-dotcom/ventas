@@ -3,6 +3,14 @@
 NIXPACKS_PHP_ROOT_DIR = "/app/public"
 NIXPACKS_NODE_VERSION = "20"
 
+[phases.install]
+# Forzamos la instalación de NPM eliminando el lockfile (resuelve problemas de dependencias nativas entre Windows y Linux)
+cmds = [
+    "composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader",
+    "rm -f package-lock.json",
+    "npm install"
+]
+
 [phases.build]
 # Se ejecuta durante la construcción de la imagen en Railway
 cmds = [
