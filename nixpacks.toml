@@ -1,30 +1,11 @@
-# Configuration for Railway (Laravel 12 + FilamentPHP v4 + Vite)
-[phases.setup]
-nixPkgs = [
-    "php84",
-    "php84Packages.composer",
-    "php84Extensions.intl",
-    "php84Extensions.zip",
-    "php84Extensions.pdo_pgsql",
-    "php84Extensions.pgsql",
-    "php84Extensions.bcmath",
-    "php84Extensions.mbstring",
-    "nodejs_20"
-]
-
-[phases.install]
-cmds = [
-    "composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader",
-    "npm install"
-]
+[variables]
+# Configura el directorio público para Nginx
+NIXPACKS_PHP_ROOT_DIR = "/app/public"
 
 [phases.build]
+# Se ejecuta durante la construcción de la imagen en Railway
 cmds = [
     "npm run build",
     "mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache storage/logs bootstrap/cache",
     "chmod -R 777 storage bootstrap/cache"
 ]
-
-[start]
-cmd = "php artisan serve --host=0.0.0.0 --port=$PORT"
-
