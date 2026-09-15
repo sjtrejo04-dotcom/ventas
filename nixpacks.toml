@@ -15,6 +15,7 @@ cmds = [
 [phases.build]
 # Se ejecuta durante la construcción de la imagen en Railway
 cmds = [
+    "npm install @rolldown/binding-linux-x64-gnu --no-save",
     "npm run build",
     "mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache storage/logs bootstrap/cache",
     "chmod -R 777 storage bootstrap/cache"
