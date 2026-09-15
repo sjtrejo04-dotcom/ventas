@@ -1,6 +1,7 @@
 [variables]
 # Configura el directorio público para Nginx
 NIXPACKS_PHP_ROOT_DIR = "/app/public"
+NIXPACKS_NODE_VERSION = "20"
 
 [phases.build]
 # Se ejecuta durante la construcción de la imagen en Railway
