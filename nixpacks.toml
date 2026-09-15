@@ -4,11 +4,12 @@ NIXPACKS_PHP_ROOT_DIR = "/app/public"
 NIXPACKS_NODE_VERSION = "20"
 
 [phases.install]
-# Forzamos la instalación de NPM eliminando el lockfile (resuelve problemas de dependencias nativas entre Windows y Linux)
+# Forzamos la instalación de NPM eliminando el lockfile y limpiando la caché (Railway guarda node_modules entre builds)
 cmds = [
     "composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader",
-    "rm -f package-lock.json",
-    "npm install"
+    "rm -rf node_modules package-lock.json",
+    "npm cache clean --force",
+    "npm install --force"
 ]
 
 [phases.build]
