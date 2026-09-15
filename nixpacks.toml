@@ -1,6 +1,6 @@
 [variables]
 # Configura el directorio público para Nginx
-NIXPACKS_PHP_ROOT_DIR = "/app/public"
+NIXPACKS_PHP_ROOT_DIR = "public"
 NIXPACKS_NODE_VERSION = "20"
 
 [phases.install]
