@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/Admin/**/*';
+@source '../../../../resources/views/filament/admin/**/*';
+@source '../../../../resources/views/filament/pages/auth/**/*';
+
+.dark {
+    /* Paleta Neutral Dark Mode */
+    --color-gray-950: 18 18 18; /* #121212 - Background General */
+    --color-gray-900: 26 26 26; /* #1A1A1A - Cards & Sidebars */
+    --color-gray-800: 42 42 42; /* #2A2A2A - Borders */
+}
+
+/* Tipografía: Manrope para títulos y encabezados */
+h1, h2, h3, h4, h5, h6, 
+.fi-header-heading, 
+.fi-modal-heading, 
+.fi-section-header-heading {
+    font-family: 'Manrope', sans-serif !important;
+}
+
+/* Tipografía: Hanken Grotesk para cuerpo, inputs y etiquetas */
+body, input, select, textarea, button, table, .fi-sidebar-item-label, .fi-badge {
+    font-family: 'Hanken Grotesk', sans-serif !important;
+}
+
+/* Estilo visual del Sidebar */
+.dark .fi-sidebar {
+    background-color: #1A1A1A !important;
+    border-right: 1px solid #2A2A2A !important;
+    box-shadow: 4px 0 20px -5px rgba(0, 0, 0, 0.4) !important;
+}
+
+.fi-sidebar-item-active .fi-sidebar-item-button {
+    background-color: #FF5F1F !important;
+    color: #FFFFFF !important;
+    border-radius: 9999px !important;
+}
